@@ -5,6 +5,9 @@ from flask_restplus import Api, Resource
 from flask import Flask, request
 
 from db.config import configure_mongo, MONGO_DB
+from werkzeug.contrib.fixers import ProxyFix
+
+application.wsgi_app = ProxyFix(application.wsgi_app)
 
 logger = logging.getLogger('werkzeug')
 
