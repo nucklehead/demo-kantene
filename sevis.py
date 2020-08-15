@@ -7,12 +7,12 @@ from flask import Flask, request
 from db.config import configure_mongo, MONGO_DB
 from werkzeug.contrib.fixers import ProxyFix
 
-application.wsgi_app = ProxyFix(application.wsgi_app)
-
 logger = logging.getLogger('werkzeug')
 
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app)
+
 api = Api(app)
 
 configure_mongo(app, MONGO_DB)
